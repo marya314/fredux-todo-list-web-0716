@@ -1,10 +1,10 @@
-export const createStore = (reducer) => {
+export const createStore = (todosReducer) => {
   let state;
   let listeners = [];
   const getState = () => state;
 
   const dispatch = (action) => {
-    state = reducer(state, action);
+    state = todosReducer(state, action);
     listeners.forEach(listener => listener())
   };
 
@@ -16,6 +16,7 @@ export const createStore = (reducer) => {
   return {
     getState: getState,
     dispatch: dispatch,
+    listeners: listeners,
     subscribe: subscribe
   };
 }
